@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="index.css" rel="stylesheet">
+  </head>
+  <body>
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <script>
+    $(function() {
+      var timer = null
+      var flag = 0
+      var data = ['images/大1.jpg', 'images/真1.jpg', 'images/真2.jpg', 'images/大3.jpg', 'images/真3.jpg','images/真4.jpg','images/真5.jpg','images/真6.jpg','images/真7.jpg','images/真8.jpg','images/真9.jpg', 'images/大2.jpg']
+
+      playFunc()
+      $(document).keyup(function(e) {
+        if (e.keyCode === 32) {
+          if (flag === 1) {
+            stopFunc()
+          } else {
+            playFunc()
+          }
+        }
+      })
+
+      function playFunc() {
+        flag = 1
+        clearInterval(timer)
+        timer = setInterval(function() {
+          var random = Math.floor(Math.random() * data.length)
+          console.log(random)
+          $('body').css('background-image', `url(${data[random]})`)
+          $('body').css('transition-duration', '100ms')
+        }, 150)
+      }
+
+      function stopFunc() {
+        flag = 0
+        clearInterval(timer)
+      }
+    })
+  </script>
+  </body>
+</html>
